@@ -1,0 +1,39 @@
+/*.dashboard{
+    width: auto;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}*/
+.dashboard{
+    width: auto;
+    height: 70vh;
+    padding: 0;
+    margin: 50px;
+}
+
+.blur-background {
+    display: none;
+}
+
+/*.blur-background {
+    animation: fadeinout 5s linear forwards;
+    opacity: 0;
+    height: 0;
+}*/
+
+@-webkit-keyframes fadeinout {
+    0%   {opacity: 1;}
+    50%  {opacity: 0.5;}
+    100% {opacity: 0;}
+}
+
+@keyframes fadeinout {
+    0%   {opacity: 1;}
+    50%  {opacity: 0.5;}
+    100% {opacity: 0;}
+}
+
+.blur-background div{
+    display: inline;
+    position: inherit !important;
+}
