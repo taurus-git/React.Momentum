@@ -2,70 +2,58 @@ import React from 'react';
 import axios from 'axios';
 import TodoList from "../Todo";
 import './Dashboard.css';
-import { Blurhash } from "react-blurhash";
+import {Blurhash} from "react-blurhash";
+import BackgroundImage from "../Weather/components/BackgroundImage";
 
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            imageUrl: localStorage.getItem('backgroundUrl')
-                    ? localStorage.getItem('backgroundUrl') :
-                    'https://images.unsplash.com/photo-1543169863-46febf95f5e3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80',
-            blur_hash: localStorage.getItem('blur_hash')
-                    ? localStorage.getItem('blur_hash') :
-                    'LRBNNNM{o#s:yZofR+t6ESt8jXR*',
-            update: false
+            imageUrl: '',
+            blur_hash: 'LRBNNNM{o#s:yZofR+t6ESt8jXR*',
+            update: false,
+            weatherDesc: 'sunny',
         }
-
     }
 
-    async getBackgroundUrl() {
-            let image = await axios.get('https://api.unsplash.com/photos/random', {
-                params: {
-                    query: 'nature',
-                    orientation: 'landscape'
-                },
-                headers: {
-                    Authorization: 'Client-ID F0k0DI4K2Pqkxl87P8mdSBk9VEixFfR-j84mwZcbW9U'
-                }
-            });
+    componentWillMount() {
+        this.getBackgroundUrlSource();
+    }
 
-            this.setBackgroundUrl(image);
-            this.setBlurBackground(image);
+    async getBackgroundUrlSource() {
+        const forecast = this.props.forecast;
+
+        if (forecast && Object.keys(forecast).length !== 0 && forecast.constructor === Object) {
+            let currentWeatherDesc = forecast.weather[0].description;
+            await this.getBackgroundUrl(currentWeatherDesc)
         }
+    }
 
-    setBackgroundUrl(image) {
-        localStorage.setItem('backgroundUrl',
-            image.data.urls.full
-        );
+    async getBackgroundUrl(weatherDesc) {
+        console.log('weather search request: ' + weatherDesc)
+        let image = await axios.get('https://api.unsplash.com/search/photos', {
+            params: {
+                query: weatherDesc,
+                per_page: 100,
+                orientation: 'landscape',
+            },
+            headers: {
+                Authorization: 'Client-ID F0k0DI4K2Pqkxl87P8mdSBk9VEixFfR-j84mwZcbW9U'
+            }
+        });
 
-        const backgroundUrl = localStorage.getItem('backgroundUrl')
+        let randomNum = Math.floor(Math.random(100)*10); // get more different images with the same forecast
+
         this.setState({
-            imageUrl: backgroundUrl
+            imageUrl: image.data.results[randomNum].urls.full
         })
     }
 
-    setBlurBackground(image) {
-        localStorage.setItem(
-            'blur_hash', 'backgroundUrl' ? image.data.blur_hash : ''
-        );
-
-        const blur_hash = localStorage.getItem('blur_hash');
-        this.setState({
-            blur_hash: blur_hash
-        })
-    }
-
-    getBackground() {
-
-
-        {console.log(this.props)}
-
-
-        if (this.props.update) {
-            return this.getBackgroundUrl();
-        } else {
-            return `url(${this.state.imageUrl})`;
+    componentDidUpdate(prevProps) {
+        if (this.props.forecast.weather !== undefined && prevProps.forecast.weather !== undefined) {
+            if (this.props.forecast.weather[0].description !== prevProps.forecast.weather[0].description) {
+                this.getBackgroundUrlSource();
+            }
         }
     }
 
@@ -73,23 +61,15 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <div className="blur-background">
-                    <Blurhash
+                    {/* <Blurhash
                         hash={this.state.blur_hash}
                         width={'auto'}
                     >
-                    </Blurhash>
+                    </Blurhash>*/}
                 </div>
-                <div className="dashboard" style={
-                    {backgroundImage: this.getBackground(),
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat'
-                    }
-                } />
-                <TodoList />
+                <BackgroundImage imageUrl={this.state.imageUrl}/>
+                <TodoList/>
             </div>
-
-            /*</div>*/
         );
     }
 
