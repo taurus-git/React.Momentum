@@ -1,25 +1,15 @@
-/*.dashboard{
+.dashboard{
     width: auto;
     height: 100vh;
     padding: 0;
     margin: 0;
-}*/
-.dashboard{
-    width: auto;
-    height: 70vh;
-    padding: 0;
-    margin: 50px;
 }
 
 .blur-background {
-    display: none;
-}
-
-/*.blur-background {
-    animation: fadeinout 5s linear forwards;
+    animation: fadeinout 6s linear forwards;
     opacity: 0;
     height: 0;
-}*/
+}
 
 @-webkit-keyframes fadeinout {
     0%   {opacity: 1;}

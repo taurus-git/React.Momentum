@@ -3,3 +3,10 @@
     top: 100px;
     right: 50px;
 }
+
+.add-city {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    z-index: 10;
+}

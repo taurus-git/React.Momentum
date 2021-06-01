@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import TodoList from "../Todo";
 import './Dashboard.css';
 import {Blurhash} from "react-blurhash";
 import BackgroundImage from "../Weather/components/BackgroundImage";
@@ -9,10 +8,9 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            imageUrl: '',
+            imageUrl: 'https://images.unsplash.com/photo-1543169863-46febf95f5e3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80',
             blur_hash: 'LRBNNNM{o#s:yZofR+t6ESt8jXR*',
-            update: false,
-            weatherDesc: 'sunny',
+            weatherDesc: '',
         }
     }
 
@@ -45,11 +43,16 @@ class Dashboard extends React.Component {
         let randomNum = Math.floor(Math.random(100)*10); // get more different images with the same forecast
 
         this.setState({
-            imageUrl: image.data.results[randomNum].urls.full
+            imageUrl: image.data.results[randomNum].urls.full,
+            blur_hash: image.data.results[randomNum].blur_hash
         })
     }
 
     componentDidUpdate(prevProps) {
+        if(prevProps.forecast.weather === undefined && this.state.weatherDesc === '') {
+            this.getBackgroundUrlSource();
+        }
+
         if (this.props.forecast.weather !== undefined && prevProps.forecast.weather !== undefined) {
             if (this.props.forecast.weather[0].description !== prevProps.forecast.weather[0].description) {
                 this.getBackgroundUrlSource();
@@ -61,14 +64,13 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <div className="blur-background">
-                    {/* <Blurhash
+                     <Blurhash
                         hash={this.state.blur_hash}
                         width={'auto'}
                     >
-                    </Blurhash>*/}
+                    </Blurhash>
                 </div>
                 <BackgroundImage imageUrl={this.state.imageUrl}/>
-                <TodoList/>
             </div>
         );
     }

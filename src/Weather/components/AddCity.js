@@ -5,7 +5,7 @@ import {addCity, addForecast} from "../actions";
 const AddCity = ({ dispatch }) => {
     let input;
     return (
-        <div>
+        <div className="add-city">
             <form onSubmit={e => {
                 e.preventDefault()
                 if (!input.value.trim()) {
