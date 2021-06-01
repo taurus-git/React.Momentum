@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/taurus-git/React.Momentum/static/css/main.6f75d2c3.chunk.css",
-    "main.js": "/taurus-git/React.Momentum/static/js/main.43b1086c.chunk.js",
-    "main.js.map": "/taurus-git/React.Momentum/static/js/main.43b1086c.chunk.js.map",
-    "runtime-main.js": "/taurus-git/React.Momentum/static/js/runtime-main.6f287db3.js",
-    "runtime-main.js.map": "/taurus-git/React.Momentum/static/js/runtime-main.6f287db3.js.map",
-    "static/js/2.215a510c.chunk.js": "/taurus-git/React.Momentum/static/js/2.215a510c.chunk.js",
-    "static/js/2.215a510c.chunk.js.map": "/taurus-git/React.Momentum/static/js/2.215a510c.chunk.js.map",
-    "index.html": "/taurus-git/React.Momentum/index.html",
-    "static/css/main.6f75d2c3.chunk.css.map": "/taurus-git/React.Momentum/static/css/main.6f75d2c3.chunk.css.map",
-    "static/js/2.215a510c.chunk.js.LICENSE.txt": "/taurus-git/React.Momentum/static/js/2.215a510c.chunk.js.LICENSE.txt"
+    "main.css": "/React.Momentum/static/css/main.6f75d2c3.chunk.css",
+    "main.js": "/React.Momentum/static/js/main.43b1086c.chunk.js",
+    "main.js.map": "/React.Momentum/static/js/main.43b1086c.chunk.js.map",
+    "runtime-main.js": "/React.Momentum/static/js/runtime-main.79f89977.js",
+    "runtime-main.js.map": "/React.Momentum/static/js/runtime-main.79f89977.js.map",
+    "static/js/2.215a510c.chunk.js": "/React.Momentum/static/js/2.215a510c.chunk.js",
+    "static/js/2.215a510c.chunk.js.map": "/React.Momentum/static/js/2.215a510c.chunk.js.map",
+    "index.html": "/React.Momentum/index.html",
+    "static/css/main.6f75d2c3.chunk.css.map": "/React.Momentum/static/css/main.6f75d2c3.chunk.css.map",
+    "static/js/2.215a510c.chunk.js.LICENSE.txt": "/React.Momentum/static/js/2.215a510c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.6f287db3.js",
+    "static/js/runtime-main.79f89977.js",
     "static/js/2.215a510c.chunk.js",
     "static/css/main.6f75d2c3.chunk.css",
     "static/js/main.43b1086c.chunk.js"
