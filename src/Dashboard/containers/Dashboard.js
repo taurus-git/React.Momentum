@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './Dashboard.css';
 import {Blurhash} from "react-blurhash";
-import BackgroundImage from "../Weather/components/BackgroundImage";
+import BackgroundImage from "../components/BackgroundImage";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -28,7 +28,6 @@ class Dashboard extends React.Component {
     }
 
     async getBackgroundUrl(weatherDesc) {
-        console.log('weather search request: ' + weatherDesc)
         let image = await axios.get('https://api.unsplash.com/search/photos', {
             params: {
                 query: weatherDesc,
@@ -43,7 +42,7 @@ class Dashboard extends React.Component {
         let randomNum = Math.floor(Math.random(100)*10); // get more different images with the same forecast
 
         this.setState({
-            imageUrl: image.data.results[randomNum].urls.full,
+            imageUrl: image.data.results[randomNum].urls.regular,
             blur_hash: image.data.results[randomNum].blur_hash
         })
     }

@@ -16,7 +16,6 @@ export const deleteCity = () => ({
 })*/
 
 export const addForecast = cityName => async dispatch => {
-    console.log(cityName)
     const forecast = await DailyForecast(cityName)
 
     dispatch({

@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardApp from "./Dashboard/Dashboard";
+import DashboardApp from "./Dashboard/containers/Dashboard";
 import ClockApp from "./Clock/Clock";
 import WeatherApp from "./Weather"
 import TodoList from "./Todo";
